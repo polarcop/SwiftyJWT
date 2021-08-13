@@ -33,6 +33,9 @@ let package = Package(
                 "SwiftyJWA"
             ]),
         .testTarget(
+            name: "SwiftyJWATests",
+            dependencies: ["SwiftyJWA"]),
+        .testTarget(
             name: "SwiftyJWTTests",
             dependencies: ["SwiftyJWT"]),
     ]
