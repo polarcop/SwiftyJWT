@@ -1,7 +1,7 @@
 import XCTest
 @testable import SwiftyJWA
 
-final class SwiftyJWATests: XCTestCase {
+final class SwiftyJWAHMACTests: XCTestCase {
     let key = "secret".data(using: .utf8)!
     let message = "message".data(using: .utf8)!
     let sha256Signature = Data(base64Encoded: "i19IcCmVwVmMVz2x4hhmqbgl1KeU0WnXBgoDYFeWNgs=")!
