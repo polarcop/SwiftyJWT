@@ -57,4 +57,7 @@ do {
 }
 ```
 
+### License:
+Mapper is maintained by [Polar](https://polarcop.com) and released under the Apache 2.0 license. See LICENSE for details
+
 
