@@ -19,7 +19,7 @@ SwiftJWT is a simple Swift library to encode and decode JWT tokens. This library
 
 ```swift
 let secret = "secret".data(using: .utf8)!
-JWT.encode(claims: ["key": "value"], algorithm: .hs256(secret))
+SwiftyJWT.encode(claims: ["key": "value"], algorithm: .hs256(secret))
 ```
 
 #### Advanced Encoding (Claim Set)
@@ -29,13 +29,13 @@ var claims = ClaimSet()
 claims.issuer = "www.polarcop.com"
 claims.issuedAt = Date()
 claims["key"] = "value"
-JWT.encode(claims: claims, algorithm: .hs256(secret))
+SwiftyJWT.encode(claims: claims, algorithm: .hs256(secret))
 ```
 
 #### Advanced Encoding (Builder)
 ```swift
 let secret = "secret".data(using: .utf8)!
-JWT.encode(.hs256(secret)) { builder in
+SwiftyJWT.encode(.hs256(secret)) { builder in
     builder.issuer = "www.polarcop.com"
     builder.issuedAt = Date()
     builder["key"] = "value"
@@ -48,7 +48,7 @@ JWT.encode(.hs256(secret)) { builder in
 do {
     let secret = "secret".data(using: .utf8)!
     let jwtString: String = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb2xhciI6dHJ1ZX0.ip-a_End-3GHD4NSwxhk3wCnMBexxPaxlzWRtJrh3NY"
-    let claims: ClaimSet = try JWT.decode(jwtString, algorithm: .hs256(secret))
+    let claims: ClaimSet = try SwiftyJWT.decode(jwtString, algorithm: .hs256(secret))
     print(claims)
 } catch let error as SwiftyJWT.JWTErrors.InvalidToken {
     print("JWT Token is invalid: \(error)")
