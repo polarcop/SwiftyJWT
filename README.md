@@ -9,7 +9,7 @@ SwiftJWT is a simple Swift library to encode and decode JWT tokens. This library
 **With** [Package Manager](https://swift.org/package-manager/)
 
 ```swift
-.package(name: "Mapper", url: "https://github.com/polarcop/SwiftyJWT.git", .upToNextMajor(from: "1.0.0"))
+.package(name: "SwiftyJWT", url: "https://github.com/polarcop/SwiftyJWT.git", .upToNextMajor(from: "1.0.0"))
 ```
 
 ## Usage
