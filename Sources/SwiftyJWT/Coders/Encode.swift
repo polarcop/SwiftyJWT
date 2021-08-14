@@ -1,14 +1,13 @@
 import Foundation
 
 
-/*** Encode a set of claims
- - parameter claims: The set of claims
- - parameter algorithm: The algorithm to sign the payload with
- - returns: The JSON web token as a String
- */
-
-extension SwiftyJWT.Encode {
-    public func encode(claims: ClaimSet, algorithm: Algorithm, headers: [String: String]? = nil) -> String {
+extension SwiftyJWT {
+    /*** Encode a set of claims
+     - parameter claims: The set of claims
+     - parameter algorithm: The algorithm to sign the payload with
+     - returns: The JSON web token as a String
+     */
+    public static func encode(claims: ClaimSet, algorithm: Algorithm, headers: [String: String]? = nil) -> String {
         let encoder = CompactJSONEncoder()
         
         var headers = headers ?? [:]
@@ -20,7 +19,7 @@ extension SwiftyJWT.Encode {
         let header = try! encoder.encodeString(headers)
         let payload = encoder.encodeString(claims.claims)!
         let signingInput = "\(header).\(payload)"
-        let signature = SwiftyJWT.Utils.base64encoded(algorithm.algorithm.sign(signingInput.data(using: .utf8)!))
+        let signature = base64encoded(algorithm.algorithm.sign(signingInput.data(using: .utf8)!))
         return "\(signingInput).\(signature)"
     }
     
@@ -29,16 +28,17 @@ extension SwiftyJWT.Encode {
      - parameter algorithm: The algorithm to sign the payload with
      - returns: The JSON web token as a String
      */
-    public func encode(claims: [String: Any], algorithm: Algorithm, headers: [String: String]? = nil) -> String {
+    public static func encode(claims: [String: Any], algorithm: Algorithm, headers: [String: String]? = nil) -> String {
         return encode(claims: ClaimSet(claims: claims), algorithm: algorithm, headers: headers)
     }
     
     
     /// Encode a set of claims using the builder pattern
-    public func encode(_ algorithm: Algorithm, closure: ((ClaimSetBuilder) -> Void)) -> String {
+    public static func encode(_ algorithm: Algorithm, closure: ((ClaimSetBuilder) -> Void)) -> String {
         let builder = ClaimSetBuilder()
         closure(builder)
         return encode(claims: builder.claims, algorithm: algorithm)
     }
     
 }
+

@@ -117,24 +117,24 @@ extension ClaimSet {
     public func validateAudience(_ audience: String) throws {
         if let aud = self["aud"] as? [String] {
             if !aud.contains(audience) {
-                throw InvalidToken.invalidAudience
+                throw SwiftyJWT.JWTErrors.InvalidToken.invalidAudience
             }
         } else if let aud = self["aud"] as? String {
             if aud != audience {
-                throw InvalidToken.invalidAudience
+                throw SwiftyJWT.JWTErrors.InvalidToken.invalidAudience
             }
         } else {
-            throw InvalidToken.decodeError("Invalid audience claim, must be a string or an array of strings")
+            throw SwiftyJWT.JWTErrors.InvalidToken.decodeError("Invalid audience claim, must be a string or an array of strings")
         }
     }
     
     public func validateIssuer(_ issuer: String) throws {
         if let iss = self["iss"] as? String {
             if iss != issuer {
-                throw InvalidToken.invalidIssuer
+                throw SwiftyJWT.JWTErrors.InvalidToken.invalidIssuer
             }
         } else {
-            throw InvalidToken.invalidIssuer
+            throw SwiftyJWT.JWTErrors.InvalidToken.invalidIssuer
         }
     }
     
