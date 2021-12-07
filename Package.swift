@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SwiftyJWT",
     platforms: [
-        .iOS(.v8),
+        .iOS(.v9),
         .macOS(.v10_12)
     ],
     products: [
