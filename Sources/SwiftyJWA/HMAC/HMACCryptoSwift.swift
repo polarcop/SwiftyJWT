@@ -22,11 +22,11 @@ extension HMACAlgorithm.Hash {
   var cryptoSwiftVariant: HMAC.Variant {
     switch self {
     case .sha256:
-      return .sha256
+        return .sha2(.sha256)
     case .sha384:
-      return .sha384
+        return .sha2(.sha384)
     case .sha512:
-      return .sha512
+        return .sha2(.sha512)
     }
   }
 }
